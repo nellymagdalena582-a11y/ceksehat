@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CekSehat - Manajemen Pengguna</title>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            ❤️ <span>CekSehat</span>
+        </div>
+        <div class="search-box">
+            <input type="text" id="search-pengguna-input" placeholder="Cari pengguna berdasarkan nama atau email...">
+        </div>
+        <div class="navbar-right">
+            <button class="notif-btn" onclick="window.location.href='notifikasi.html'">
+                🔔
+            </button>
+            <div class="profile" onclick="window.location.href='pengguna.html'">
+                <img src="https://i.pravatar.cc/100?img=33" alt="Admin Profile">
+                <span>Admin</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- SIDEBAR -->
+        <aside>
+            <ul>
+                <li><a href="index.html">📊 Dashboard</a></li>
+                <li><a href="dokter.html">👨‍⚕️ Dokter</a></li>
+                <li><a href="pengguna.html">👥 Pengguna</a></li>
+                <li><a href="checkup.html">🩺 Check Up</a></li>
+                <li><a href="artikel.html">📰 Artikel</a></li>
+                <li><a href="notifikasi.html">🔔 Notifikasi</a></li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <h1>
+                <span>👥 Manajemen Data Pengguna</span>
+                <button class="btn btn-primary" id="btn-tambah-pengguna">
+                    ➕ Tambah Pengguna
+                </button>
+            </h1>
+
+            <div class="box">
+                <h2>Daftar Pengguna / Pasien Terdaftar</h2>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 60px;">No</th>
+                                <th>Nama Lengkap</th>
+                                <th>Email</th>
+                                <th>No. Telepon</th>
+                                <th>Jenis Kelamin</th>
+                                <th>Umur</th>
+                                <th style="width: 180px; text-align: center;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pengguna-table-body">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL FORM PENGGUNA -->
+    <div class="modal" id="pengguna-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Tambah Data Pengguna</h2>
+                <button class="close-modal" id="close-pengguna-modal">&times;</button>
+            </div>
+            <form id="pengguna-form">
+                <div class="modal-body">
+                    <input type="hidden" id="edit-pengguna-id">
+                    
+                    <div class="form-grid" style="grid-template-columns: 1fr;">
+                        <div class="form-group">
+                            <label for="pengguna-nama">Nama Lengkap</label>
+                            <input type="text" id="pengguna-nama" placeholder="Contoh: Andi Pratama" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="pengguna-email">Alamat Email</label>
+                            <input type="email" id="pengguna-email" placeholder="Contoh: andi@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pengguna-telepon">No. Telepon</label>
+                            <input type="tel" id="pengguna-telepon" placeholder="Contoh: 08123456789" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="pengguna-jk">Jenis Kelamin</label>
+                            <select id="pengguna-jk" required>
+                                <option value="">Pilih Jenis Kelamin</option>
+                                <option value="Laki-laki">Laki-laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pengguna-umur">Umur (Tahun)</label>
+                            <input type="number" id="pengguna-umur" placeholder="Contoh: 28" min="1" max="120" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-batal-pengguna">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/shared.js"></script>
+    <script src="js/pengguna.js"></script>
+</body>
+</html>

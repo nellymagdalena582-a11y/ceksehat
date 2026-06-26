@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CekSehat - Artikel Kesehatan</title>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            ❤️ <span>CekSehat</span>
+        </div>
+        <div class="search-box">
+            <input type="text" id="search-artikel-input" placeholder="Cari artikel berdasarkan judul...">
+        </div>
+        <div class="navbar-right">
+            <button class="notif-btn" onclick="window.location.href='notifikasi.html'">
+                🔔
+            </button>
+            <div class="profile" onclick="window.location.href='pengguna.html'">
+                <img src="https://i.pravatar.cc/100?img=33" alt="Admin Profile">
+                <span>Admin</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- SIDEBAR -->
+        <aside>
+            <ul>
+                <li><a href="index.html">📊 Dashboard</a></li>
+                <li><a href="dokter.html">👨‍⚕️ Dokter</a></li>
+                <li><a href="pengguna.html">👥 Pengguna</a></li>
+                <li><a href="checkup.html">🩺 Check Up</a></li>
+                <li><a href="artikel.html">📰 Artikel</a></li>
+                <li><a href="notifikasi.html">🔔 Notifikasi</a></li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <h1>
+                <span>📰 Artikel Edukasi Kesehatan</span>
+                <button class="btn btn-primary" id="btn-tambah-artikel">
+                    ➕ Tambah Artikel
+                </button>
+            </h1>
+
+            <!-- Articles Grid -->
+            <div class="articles-grid" id="articles-container">
+                <!-- Dynamically populated -->
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL FORM ARTIKEL -->
+    <div class="modal" id="artikel-modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h2 id="modal-title">Buat Artikel Kesehatan Baru</h2>
+                <button class="close-modal" id="close-artikel-modal">&times;</button>
+            </div>
+            <form id="artikel-form">
+                <div class="modal-body">
+                    <input type="hidden" id="edit-artikel-id">
+                    
+                    <div class="form-grid" style="grid-template-columns: 1fr;">
+                        <div class="form-group">
+                            <label for="artikel-judul">Judul Artikel</label>
+                            <input type="text" id="artikel-judul" placeholder="Contoh: Pentingnya Menjaga Pola Tidur Sehat" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid" style="grid-template-columns: 1fr;">
+                        <div class="form-group">
+                            <label for="artikel-konten">Isi Artikel / Informasi Lengkap</label>
+                            <textarea id="artikel-konten" rows="8" placeholder="Tuliskan isi artikel kesehatan secara lengkap di sini..." required style="resize: vertical;"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="artikel-penulis">Penulis / Sumber</label>
+                            <input type="text" id="artikel-penulis" placeholder="Contoh: dr. Rina Amelia / Admin" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-batal-artikel">Batal</button>
+                    <button type="submit" class="btn btn-primary">Publikasikan Artikel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Detail View (Untuk membaca artikel secara lengkap) -->
+    <div class="modal" id="detail-artikel-modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header" style="background-color: var(--color-primary-light);">
+                <h2 id="detail-title">Judul Artikel</h2>
+                <button class="close-modal" id="close-detail-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px; display: flex; gap: 15px;">
+                    <span id="detail-author">Oleh: dr. Jhon</span>
+                    <span id="detail-date">Tanggal: 2026-06-25</span>
+                </div>
+                <div id="detail-content" style="font-size: 15px; line-height: 1.8; color: var(--text-main); white-space: pre-wrap;">
+                    Konten lengkap artikel...
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="btn-tutup-detail">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/shared.js"></script>
+    <script src="js/artikel.js"></script>
+</body>
+</html>

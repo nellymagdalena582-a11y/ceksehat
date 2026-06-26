@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CekSehat - Rekam Check Up</title>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            ❤️ <span>CekSehat</span>
+        </div>
+        <div class="search-box">
+            <input type="text" id="search-checkup-input" placeholder="Cari rekam medis berdasarkan nama pasien...">
+        </div>
+        <div class="navbar-right">
+            <button class="notif-btn" onclick="window.location.href='notifikasi.html'">
+                🔔
+            </button>
+            <div class="profile" onclick="window.location.href='pengguna.html'">
+                <img src="https://i.pravatar.cc/100?img=33" alt="Admin Profile">
+                <span>Admin</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- SIDEBAR -->
+        <aside>
+            <ul>
+                <li><a href="index.html">📊 Dashboard</a></li>
+                <li><a href="dokter.html">👨‍⚕️ Dokter</a></li>
+                <li><a href="pengguna.html">👥 Pengguna</a></li>
+                <li><a href="checkup.html">🩺 Check Up</a></li>
+                <li><a href="artikel.html">📰 Artikel</a></li>
+                <li><a href="notifikasi.html">🔔 Notifikasi</a></li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <h1>
+                <span>🩺 Sistem Rekam Check Up</span>
+                <button class="btn btn-primary" id="btn-tambah-checkup">
+                    ➕ Tambah Check Up
+                </button>
+            </h1>
+
+            <div class="box">
+                <h2>Riwayat Pemeriksaan Kesehatan Pasien</h2>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pasien</th>
+                                <th>Umur / JK</th>
+                                <th>TB / BB</th>
+                                <th>BMI Status</th>
+                                <th>Tekanan Darah</th>
+                                <th>Gula Darah</th>
+                                <th>Suhu</th>
+                                <th>Dokter Pemeriksa</th>
+                                <th>Tanggal</th>
+                                <th style="width: 160px; text-align: center;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelData">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL FORM CHECK UP -->
+    <div class="modal" id="checkup-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Pemeriksaan Check Up Kesehatan</h2>
+                <button class="close-modal" id="close-checkup-modal">&times;</button>
+            </div>
+            <form id="checkup-form">
+                <div class="modal-body">
+                    <input type="hidden" id="edit-checkup-id">
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="checkup-pasien">Pilih Pasien</label>
+                            <select id="checkup-pasien" required onchange="fillPasienSpecs()">
+                                <option value="">-- Pilih Pasien --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="checkup-dokter">Dokter Pemeriksa</label>
+                            <select id="checkup-dokter" required>
+                                <option value="">-- Pilih Dokter --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="checkup-umur">Umur (Auto)</label>
+                            <input type="number" id="checkup-umur" placeholder="Umur" readonly style="background-color:#e2e8f0;">
+                        </div>
+                        <div class="form-group">
+                            <label for="checkup-jk">Jenis Kelamin (Auto)</label>
+                            <input type="text" id="checkup-jk" placeholder="Jenis Kelamin" readonly style="background-color:#e2e8f0;">
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="checkup-tinggi">Tinggi Badan (cm)</label>
+                            <input type="number" id="checkup-tinggi" placeholder="Contoh: 170" required min="50" max="250">
+                        </div>
+                        <div class="form-group">
+                            <label for="checkup-berat">Berat Badan (kg)</label>
+                            <input type="number" id="checkup-berat" placeholder="Contoh: 60" required min="1" max="300">
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="checkup-td">Tekanan Darah (mmHg)</label>
+                            <input type="text" id="checkup-td" placeholder="Contoh: 120/80" required pattern="^\d{2,3}\/\d{2,3}$" title="Format: Sistole/Diastole, contoh: 120/80">
+                        </div>
+                        <div class="form-group">
+                            <label for="checkup-gula">Gula Darah (mg/dL)</label>
+                            <input type="number" id="checkup-gula" placeholder="Contoh: 95" required min="30" max="600">
+                        </div>
+                        <div class="form-group">
+                            <label for="checkup-suhu">Suhu Tubuh (°C)</label>
+                            <input type="number" id="checkup-suhu" placeholder="Contoh: 36.5" step="0.1" required min="30" max="45">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-batal-checkup">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan Pemeriksaan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/shared.js"></script>
+    <script src="js/checkup.js"></script>
+</body>
+</html>

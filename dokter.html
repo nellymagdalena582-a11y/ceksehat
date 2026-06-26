@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CekSehat - Manajemen Dokter</title>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            ❤️ <span>CekSehat</span>
+        </div>
+        <div class="search-box">
+            <input type="text" id="search-dokter-input" placeholder="Cari dokter berdasarkan nama atau spesialisasi...">
+        </div>
+        <div class="navbar-right">
+            <button class="notif-btn" onclick="window.location.href='notifikasi.html'">
+                🔔
+            </button>
+            <div class="profile" onclick="window.location.href='pengguna.html'">
+                <img src="https://i.pravatar.cc/100?img=33" alt="Admin Profile">
+                <span>Admin</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- SIDEBAR -->
+        <aside>
+            <ul>
+                <li><a href="index.html">📊 Dashboard</a></li>
+                <li><a href="dokter.html">👨‍⚕️ Dokter</a></li>
+                <li><a href="pengguna.html">👥 Pengguna</a></li>
+                <li><a href="checkup.html">🩺 Check Up</a></li>
+                <li><a href="artikel.html">📰 Artikel</a></li>
+                <li><a href="notifikasi.html">🔔 Notifikasi</a></li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <h1>
+                <span>👨‍⚕️ Manajemen Data Dokter</span>
+                <button class="btn btn-primary" id="btn-tambah-dokter">
+                    ➕ Tambah Dokter
+                </button>
+            </h1>
+
+            <!-- Dokter Grid -->
+            <div class="doctor-grid" id="doctor-list-container">
+                <!-- Dynamically rendered -->
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL FORM DOKTER -->
+    <div class="modal" id="dokter-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Tambah Data Dokter</h2>
+                <button class="close-modal" id="close-dokter-modal">&times;</button>
+            </div>
+            <form id="dokter-form">
+                <div class="modal-body">
+                    <input type="hidden" id="edit-dokter-id">
+                    
+                    <div class="form-grid" style="grid-template-columns: 1fr;">
+                        <div class="form-group">
+                            <label for="dokter-nama">Nama Lengkap Dokter</label>
+                            <input type="text" id="dokter-nama" placeholder="Contoh: Dr. Rina Amelia, Sp.A" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="dokter-spesialisasi">Spesialisasi</label>
+                            <select id="dokter-spesialisasi" required>
+                                <option value="">Pilih Spesialisasi</option>
+                                <option value="Spesialis Penyakit Dalam">Spesialis Penyakit Dalam (Sp.PD)</option>
+                                <option value="Spesialis Anak">Spesialis Anak (Sp.A)</option>
+                                <option value="Spesialis Jantung">Spesialis Jantung (Sp.JP)</option>
+                                <option value="Spesialis Bedah">Spesialis Bedah (Sp.B)</option>
+                                <option value="Spesialis Saraf">Spesialis Saraf (Sp.S)</option>
+                                <option value="Dokter Umum">Dokter Umum</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dokter-telepon">No. Telepon / WA</label>
+                            <input type="tel" id="dokter-telepon" placeholder="Contoh: 0812XXXXXXXX" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="dokter-jadwal">Jadwal Praktik</label>
+                            <input type="text" id="dokter-jadwal" placeholder="Contoh: Senin - Jumat (08:00 - 12:00)" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dokter-status">Status Keaktifan</label>
+                            <select id="dokter-status" required>
+                                <option value="Aktif">Aktif</option>
+                                <option value="Tidak Aktif">Tidak Aktif</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-batal-dokter">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/shared.js"></script>
+    <script src="js/dokter.js"></script>
+</body>
+</html>

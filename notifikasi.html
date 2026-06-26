@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CekSehat - Log Notifikasi</title>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            ❤️ <span>CekSehat</span>
+        </div>
+        <div class="search-box">
+            <!-- No search bar needed for notification log, placeholder or label -->
+            <span style="color: var(--text-muted); font-size: 14px; font-weight: 500;">Pusat Pemberitahuan Sistem</span>
+        </div>
+        <div class="navbar-right">
+            <button class="notif-btn" onclick="window.location.href='notifikasi.html'">
+                🔔
+            </button>
+            <div class="profile" onclick="window.location.href='pengguna.html'">
+                <img src="https://i.pravatar.cc/100?img=33" alt="Admin Profile">
+                <span>Admin</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- SIDEBAR -->
+        <aside>
+            <ul>
+                <li><a href="index.html">📊 Dashboard</a></li>
+                <li><a href="dokter.html">👨‍⚕️ Dokter</a></li>
+                <li><a href="pengguna.html">👥 Pengguna</a></li>
+                <li><a href="checkup.html">🩺 Check Up</a></li>
+                <li><a href="artikel.html">📰 Artikel</a></li>
+                <li><a href="notifikasi.html">🔔 Notifikasi</a></li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <h1>
+                <span>🔔 Log Notifikasi Sistem</span>
+                <div class="box-actions">
+                    <button class="btn btn-secondary" id="btn-tandai-dibaca">
+                        ✔️ Tandai Semua Dibaca
+                    </button>
+                    <button class="btn btn-danger" id="btn-hapus-semua">
+                        🗑️ Hapus Semua
+                    </button>
+                </div>
+            </h1>
+
+            <div class="box" style="padding: 24px;">
+                <div class="notif-list" id="notifikasi-container">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/shared.js"></script>
+    <script src="js/notifikasi.js"></script>
+</body>
+</html>
